@@ -1,4 +1,4 @@
-//Thu Jul 04 2024 05:59:41 GMT+0000 (Coordinated Universal Time)
+//Thu Jul 04 2024 06:02:40 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
 const _0x5f00b5 = _0x5b30bc("太平通"),
@@ -106,17 +106,23 @@ class _0x31446a {
         _0x51dd69 = _0x58317b.valid_code || [200];
       if (_0x58317b.form) {
         for (let _0x33a32d in _0x58317b.form) {
-          typeof _0x58317b.form[_0x33a32d] == "object" && (_0x58317b.form[_0x33a32d] = JSON.stringify(_0x58317b.form[_0x33a32d]));
+          if (typeof _0x58317b.form[_0x33a32d] == "object") {
+            _0x58317b.form[_0x33a32d] = JSON.stringify(_0x58317b.form[_0x33a32d]);
+          }
         }
       }
       _0x58317b.method = _0x58317b?.["method"]?.["toUpperCase"]() || "GET";
       if (_0x58317b.searchParams) {
         for (let _0x25ad5c in _0x58317b.searchParams) {
-          typeof _0x58317b.searchParams[_0x25ad5c] == "object" && (_0x58317b.searchParams[_0x25ad5c] = JSON.stringify(_0x58317b.searchParams[_0x25ad5c]));
+          if (typeof _0x58317b.searchParams[_0x25ad5c] == "object") {
+            _0x58317b.searchParams[_0x25ad5c] = JSON.stringify(_0x58317b.searchParams[_0x25ad5c]);
+          }
         }
       }
       let _0x4cf7b9 = _0x58317b.got_client || this.got;
-      _0x58317b.debug_in && console.log(_0x58317b);
+      if (_0x58317b.debug_in) {
+        console.log(_0x58317b);
+      }
       while (_0x33f990 < _0x39aaf8) {
         if (_0x33f990 > 0) {
           await _0x5f00b5.wait(_0x1777b6 * _0x33f990);
@@ -148,7 +154,11 @@ class _0x31446a {
             _0x1ce2bc = _0x405ce4?.["statusCode"] || null;
           if (_0x3e4d15 || _0x41898b.includes(_0x5f1072?.["name"])) {
             let _0x457e9d = "";
-            _0x5f1072?.["code"] && (_0x457e9d += "(" + _0x5f1072.code, _0x5f1072?.["event"] && (_0x457e9d += ":" + _0x5f1072.event), _0x457e9d += ")");
+            if (_0x5f1072?.["code"]) {
+              _0x457e9d += "(" + _0x5f1072.code;
+              _0x5f1072?.["event"] && (_0x457e9d += ":" + _0x5f1072.event);
+              _0x457e9d += ")";
+            }
             this.log("[" + _0x334465 + "]请求超时" + _0x457e9d + "(" + _0xac4137 + "ms)，重试第" + _0x33f990 + "次");
           } else {
             if (_0x3ef083.includes(_0x5f1072?.["name"])) {
@@ -156,7 +166,9 @@ class _0x31446a {
               this.log("[" + _0x334465 + "]请求错误(" + _0x5f1072.code + ")(" + _0xac4137 + "ms)，重试第" + _0x33f990 + "次");
             } else {
               if (_0x1ce2bc) {
-                _0x5f1072 && !_0x51dd69.includes(_0x1ce2bc) && this.log("请求[" + _0x334465 + "]返回[" + _0x1ce2bc + "]");
+                if (_0x5f1072 && !_0x51dd69.includes(_0x1ce2bc)) {
+                  this.log("请求[" + _0x334465 + "]返回[" + _0x1ce2bc + "]");
+                }
               } else {
                 let {
                   code = "unknown",
@@ -196,7 +208,9 @@ class _0x31446a {
         result: _0x47fa37
       };
       _0x2f7325 = _0x15b505;
-      _0x58317b.debug_out && console.log(_0x2f7325);
+      if (_0x58317b.debug_out) {
+        console.log(_0x2f7325);
+      }
     } catch (_0x255c00) {
       console.log(_0x255c00);
     } finally {
@@ -211,7 +225,12 @@ class _0x15ca64 extends _0x31446a {
     let _0x4abbe1 = _0x8fbba?.["split"]("#");
     this.token = _0x4abbe1?.[0] || "";
     this.device_id = _0x4abbe1?.[1];
-    this.device_id ? this.log("指定了device_id: " + this.device_id) : (this.device_id = _0x1907fa(), this.log("随机分配device_id: " + this.device_id));
+    if (this.device_id) {
+      this.log("指定了device_id: " + this.device_id);
+    } else {
+      this.device_id = _0x1907fa();
+      this.log("随机分配device_id: " + this.device_id);
+    }
     this.accessKey = "";
     this.is_black = false;
     this.got = this.got.extend({
@@ -274,7 +293,9 @@ class _0x15ca64 extends _0x31446a {
           notify: true
         };
         this.log("登录失败[" + _0x2c20cb + "]: " + _0x22f063, _0x18f251);
-        _0x22f063?.["includes"]("请重新登录") && (this.valid = false);
+        if (_0x22f063?.["includes"]("请重新登录")) {
+          this.valid = false;
+        }
       }
     } catch (_0x452d3a) {
       console.log(_0x452d3a);
@@ -304,7 +325,11 @@ class _0x15ca64 extends _0x31446a {
           signFlag: _0x4a1b34,
           integralSend: _0x1aef5e
         } = _0x3c246c?.["data"];
-        _0x4a1b34 ? this.log("签到成功: " + _0x1aef5e + "金币") : this.log("今天已签到");
+        if (_0x4a1b34) {
+          this.log("签到成功: " + _0x1aef5e + "金币");
+        } else {
+          this.log("今天已签到");
+        }
       } else {
         let _0x5dd1ad = _0x5f00b5.get(_0x3c246c, "msg", "");
         this.log("进入签到页面失败[" + _0x431bb8 + "]: " + _0x5dd1ad);
@@ -365,11 +390,15 @@ class _0x15ca64 extends _0x31446a {
               }
           }
         }
-        _0x19d67a && (await this.read_task());
+        if (_0x19d67a) {
+          await this.read_task();
+        }
       } else {
         let _0x523882 = _0x5f00b5.get(_0x2cf19e, "msg", "");
         this.log("查询任务失败[" + _0x9a174d + "]: " + _0x523882);
-        _0x523882?.["includes"]("请重新登录") && (this.valid = false);
+        if (_0x523882?.["includes"]("请重新登录")) {
+          this.valid = false;
+        }
       }
     } catch (_0x129979) {
       console.log(_0x129979);
@@ -515,7 +544,11 @@ class _0x15ca64 extends _0x31446a {
         _0x598a2a = _0x5f00b5.get(_0x2c5713, "code", _0x59e3ff);
       if (_0x598a2a == "0000") {
         let _0x326835 = _0x2c5713?.["data"]?.["countDownCoinInfo"]?.["coinNum"] || 0;
-        _0x326835 ? await this.read_gold(_0x5cfdc6, _0x24adf1) : this.log("文章[" + _0x5cfdc6 + "]没有阅读奖励了");
+        if (_0x326835) {
+          await this.read_gold(_0x5cfdc6, _0x24adf1);
+        } else {
+          this.log("文章[" + _0x5cfdc6 + "]没有阅读奖励了");
+        }
       } else {
         let _0x21b3bf = _0x5f00b5.get(_0x2c5713, "msg", "");
         this.log("开始阅读文章[" + _0x5cfdc6 + "]失败[" + _0x598a2a + "]: " + _0x21b3bf);
@@ -583,7 +616,9 @@ class _0x15ca64 extends _0x31446a {
       if (_0x5cb0f7.jbaFd(_0x2724b2, _0x5cb0f7.JQhYs)) {
         let _0x17e543 = _0x4c70ca?.["data"]?.["length"] || 0;
         this.log("有" + _0x17e543 + "个可领取的气泡奖励");
-        _0x17e543 && (await this.getAllCoins());
+        if (_0x17e543) {
+          await this.getAllCoins();
+        }
       } else {
         let _0x7b65f = _0x5f00b5.get(_0x4c70ca, "msg", "");
         this.log("查询气泡奖励失败[" + _0x2724b2 + "]: " + _0x7b65f);
@@ -673,7 +708,11 @@ class _0x15ca64 extends _0x31446a {
         _0x2044b4 = _0x5f00b5.get(_0xb44c7f, "code", _0x23584d);
       if (_0x2044b4 == "0000") {
         let _0x5ccea2 = _0xb44c7f?.["data"]?.["isWin"] || 0;
-        _0x5ccea2 ? this.log("话题PK选择正确") : this.log("话题PK选择错误");
+        if (_0x5ccea2) {
+          this.log("话题PK选择正确");
+        } else {
+          this.log("话题PK选择错误");
+        }
       } else {
         let _0x48bbed = _0x5f00b5.get(_0xb44c7f, "msg", "");
         this.log("话题PK失败[" + _0x2044b4 + "]: " + _0x48bbed);
@@ -802,7 +841,9 @@ class _0x15ca64 extends _0x31446a {
             availableScoreRMB: _0xcb4243
           } = _0x5229a8?.["data"]?.["scoreAccountInfo"],
           _0x52a3ca = "金币: " + _0x32adbf;
-        _0x311f74 && (_0x52a3ca += ", 90天内将过期" + _0x311f74 + "金币");
+        if (_0x311f74) {
+          _0x52a3ca += ", 90天内将过期" + _0x311f74 + "金币";
+        }
         const _0x439ef9 = {
           notify: true
         };
@@ -821,7 +862,9 @@ class _0x15ca64 extends _0x31446a {
       for (let _0x575d67 = 1; _0x575d67 <= 2; _0x575d67++) {
         _0x50fab8 = _0x50fab8.concat(await this.get_articles(_0x575d67));
       }
-      _0x50fab8.length > 14 && (_0x50fab8 = _0x50fab8.slice(0, 14));
+      if (_0x50fab8.length > 14) {
+        _0x50fab8 = _0x50fab8.slice(0, 14);
+      }
       this.log("共获取到" + _0x50fab8.length + "篇文章");
       for (let _0x58f2fb of _0x50fab8) {
         await this.coinInfoV2(_0x58f2fb);
@@ -883,7 +926,9 @@ async function _0x307e44(_0x84aa64 = 0) {
         result: _0x1695ca
       } = await _0x46fae2.request(_0x22187d);
     if (_0x4825ee != 200) {
-      _0x84aa64++ < _0x3c4b28 && (_0x144111 = await _0x307e44(_0x84aa64));
+      if (_0x84aa64++ < _0x3c4b28) {
+        _0x144111 = await _0x307e44(_0x84aa64);
+      }
       return _0x144111;
     }
     if (_0x1695ca?.["code"] == 0) {
@@ -894,15 +939,30 @@ async function _0x307e44(_0x84aa64 = 0) {
         };
         _0x5f00b5.log(_0x1695ca.commonNotify.join("\n") + "\n", _0x468a1f);
       }
-      _0x1695ca?.["commonMsg"] && _0x1695ca.commonMsg.length > 0 && _0x5f00b5.log(_0x1695ca.commonMsg.join("\n") + "\n");
+      if (_0x1695ca?.["commonMsg"] && _0x1695ca.commonMsg.length > 0) {
+        _0x5f00b5.log(_0x1695ca.commonMsg.join("\n") + "\n");
+      }
       if (_0x1695ca[_0x30d839]) {
         let _0x191b25 = _0x1695ca[_0x30d839];
-        _0x191b25.status == 0 ? _0x1bbe9e >= _0x191b25.version ? (_0x144111 = true, _0x5f00b5.log(_0x191b25.msg[_0x191b25.status]), _0x5f00b5.log(_0x191b25.updateMsg), _0x5f00b5.log("现在运行的脚本版本是：" + _0x1bbe9e + "，最新脚本版本：" + _0x191b25.latestVersion)) : _0x5f00b5.log(_0x191b25.versionMsg) : _0x5f00b5.log(_0x191b25.msg[_0x191b25.status]);
+        if (_0x191b25.status == 0) {
+          if (_0x1bbe9e >= _0x191b25.version) {
+            _0x144111 = true;
+            _0x5f00b5.log(_0x191b25.msg[_0x191b25.status]);
+            _0x5f00b5.log(_0x191b25.updateMsg);
+            _0x5f00b5.log("现在运行的脚本版本是：" + _0x1bbe9e + "，最新脚本版本：" + _0x191b25.latestVersion);
+          } else {
+            _0x5f00b5.log(_0x191b25.versionMsg);
+          }
+        } else {
+          _0x5f00b5.log(_0x191b25.msg[_0x191b25.status]);
+        }
       } else {
         _0x5f00b5.log(_0x1695ca.errorMsg);
       }
     } else {
-      _0x84aa64++ < _0x3c4b28 && (_0x144111 = await _0x307e44(_0x84aa64));
+      if (_0x84aa64++ < _0x3c4b28) {
+        _0x144111 = await _0x307e44(_0x84aa64);
+      }
     }
   } catch (_0x12f830) {
     _0x5f00b5.log(_0x12f830);
@@ -947,12 +1007,17 @@ function _0x5b30bc(_0x1ee12d) {
     }
     get(_0x6ff83e, _0x5f18fc, _0x2f0b37 = "") {
       let _0x1482b3 = _0x2f0b37;
-      _0x6ff83e?.["hasOwnProperty"](_0x5f18fc) && (_0x1482b3 = _0x6ff83e[_0x5f18fc]);
+      if (_0x6ff83e?.["hasOwnProperty"](_0x5f18fc)) {
+        _0x1482b3 = _0x6ff83e[_0x5f18fc];
+      }
       return _0x1482b3;
     }
     pop(_0x272411, _0x557ec6, _0x36e68b = "") {
       let _0x1b6d76 = _0x36e68b;
-      _0x272411?.["hasOwnProperty"](_0x557ec6) && (_0x1b6d76 = _0x272411[_0x557ec6], delete _0x272411[_0x557ec6]);
+      if (_0x272411?.["hasOwnProperty"](_0x557ec6)) {
+        _0x1b6d76 = _0x272411[_0x557ec6];
+        delete _0x272411[_0x557ec6];
+      }
       return _0x1b6d76;
     }
     copy(_0x5cf40c) {
@@ -987,8 +1052,12 @@ function _0x5b30bc(_0x1ee12d) {
           "q+": Math.floor((_0x2bee0d.getMonth() + 3) / 3),
           S: this.padStr(_0x2bee0d.getMilliseconds(), 3)
         };
-      /(y+)/.test(_0xbe465f) && (_0xbe465f = _0xbe465f.replace(RegExp.$1, (_0x2bee0d.getFullYear() + "").substr(4 - RegExp.$1.length)));
-      for (let _0x3689b6 in _0x54d769) new RegExp("(" + _0x3689b6 + ")").test(_0xbe465f) && (_0xbe465f = _0xbe465f.replace(RegExp.$1, 1 == RegExp.$1.length ? _0x54d769[_0x3689b6] : ("00" + _0x54d769[_0x3689b6]).substr(("" + _0x54d769[_0x3689b6]).length)));
+      if (/(y+)/.test(_0xbe465f)) {
+        _0xbe465f = _0xbe465f.replace(RegExp.$1, (_0x2bee0d.getFullYear() + "").substr(4 - RegExp.$1.length));
+      }
+      for (let _0x3689b6 in _0x54d769) if (new RegExp("(" + _0x3689b6 + ")").test(_0xbe465f)) {
+        _0xbe465f = _0xbe465f.replace(RegExp.$1, 1 == RegExp.$1.length ? _0x54d769[_0x3689b6] : ("00" + _0x54d769[_0x3689b6]).substr(("" + _0x54d769[_0x3689b6]).length));
+      }
       return _0xbe465f;
     }
     async showmsg() {
@@ -1095,7 +1164,9 @@ function _0x5b30bc(_0x1ee12d) {
       while (_0x3ce7a3 < _0x200423) {
         _0x1ad6ab += "0";
       }
-      _0x3ce7a3 > _0x200423 && (_0x1ad6ab = _0x1ad6ab.slice(0, 13));
+      if (_0x3ce7a3 > _0x200423) {
+        _0x1ad6ab = _0x1ad6ab.slice(0, 13);
+      }
       return parseInt(_0x1ad6ab);
     }
     async wait_until(_0x3cbbca, _0x43fa9d = {}) {
@@ -1114,7 +1185,9 @@ function _0x5b30bc(_0x1ee12d) {
       let _0x5a90fa = this.normalize_time(_0x3cbbca) - _0x35017f,
         _0x279c45 = this.time("hh:mm:ss.S", _0x5a90fa),
         _0x1b629b = Date.now();
-      _0x1b629b > _0x5a90fa && (_0x5a90fa += 86400000);
+      if (_0x1b629b > _0x5a90fa) {
+        _0x5a90fa += 86400000;
+      }
       let _0x1883c = _0x5a90fa - _0x1b629b;
       if (_0x1883c > _0xd159be) {
         const _0x3f6628 = {
@@ -1140,7 +1213,9 @@ function _0x5b30bc(_0x1ee12d) {
     }
     async wait_gap_interval(_0x703cd6, _0x5ecdc2) {
       let _0xc492bd = Date.now() - _0x703cd6;
-      _0xc492bd < _0x5ecdc2 && (await this.wait(_0x5ecdc2 - _0xc492bd));
+      if (_0xc492bd < _0x5ecdc2) {
+        await this.wait(_0x5ecdc2 - _0xc492bd);
+      }
     }
   }(_0x1ee12d);
 }
